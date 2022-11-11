@@ -53,7 +53,11 @@ var requestHandler = function(request, response) {
   // which includes the status and all headers.
   // response.writeHead(statusCode, headers);
 
-  if (request.method === 'GET' && request.url.includes('/classes/messages')) {
+  if (request.method === 'OPTIONS' && request.url.includes('/classes/messages')) {
+    statusCode = 204;
+    response.writeHead(statusCode, headers);
+    response.end();
+  } else if (request.method === 'GET' && request.url.includes('/classes/messages')) {
     statusCode = 200;
     response.writeHead(statusCode, headers);
     response.end(JSON.stringify(messages));
